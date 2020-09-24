@@ -18,5 +18,5 @@ $python hiduke_de_wakeru.py /home/user/image jpg
 - 第2引数: 拡張子('.'無しで)
 
 Arguments
-- 1st: target directory pat
+- 1st: target directory path
 - 2nd: extended(without '.')
