@@ -17,6 +17,6 @@ $python hiduke_de_wakeru.py /home/user/image jpg
 - 第1引数: ディレクトリパス
 - 第2引数: 拡張子('.'無しで)
 
-<Arguments>
+Arguments
 - 1st: target directory pat
 - 2nd: extended(without '.')
