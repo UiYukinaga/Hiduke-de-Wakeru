@@ -29,21 +29,6 @@ def getLastNumber(dir_path, ext):
             max_num = num
     return max_num
 
-'''
-def get_exif(image_path):
-    captured_datetime = None
-    with Image.open(image_path) as imgfh:
-        try:
-            exif = imgfh._getexif()
-            for attr, val in exif.items():
-                tag = ExifTags.TAGS.get(attr, attr)
-                if tag == 'DateTimeOriginal':
-                    captured_datetime = val
-        except AttributeError:
-            pass
-    return captured_datetime
-'''
-
 # メインシーケンス
 # -----------------------------------------------------------------------
 if __name__ == '__main__':
@@ -67,11 +52,14 @@ if __name__ == '__main__':
         if os.path.isdir(f_path):
             continue
 
-        # ファイルの最終更新日を取得する
-        dt = datetime.datetime.strptime(hiduke.get_exif(f_path), '%Y:%m:%d %H:%M:%S')
+        # 写真の撮影日を取得する
+        exif_str = hiduke.get_exif(f_path)        
+        # 撮影日情報の無い画像については処理をスキップする
+        if exif_str == None:
+            continue
+        else:
+            dt = datetime.datetime.strptime(hiduke.get_exif(f_path), '%Y:%m:%d %H:%M:%S')
         
-#        dt = hiduke.get_exif(f_path)
-
         # 日付を文字列に変換する
         dt_str = dt.strftime('%Y%m%d')
 
@@ -106,3 +94,4 @@ if __name__ == '__main__':
         print('> ' + name_1 + ' -> ' + name_2)
         print('> moved to ' + dt_dir_path)
 
+print("Finished!")
